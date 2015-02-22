@@ -9,8 +9,8 @@
 
  
 makeCacheMatrix <- function(x = matrix()) { 
-     Minv <- NULL 
-     set <- function(y) { 
+     Minv <- NULL             #Set Inverse Matrix (Minv) to NULL
+     set <- function(y) {     
          x <<- y; 
          Minv <<- NULL; 
      } 
@@ -30,12 +30,12 @@ makeCacheMatrix <- function(x = matrix()) {
  
 cacheSolve <- function(x, ...) { 
      Minv <- x$getinv() 
-     if(!is.null(Minv)) { 
+     if(!is.null(Minv)) { 	#If Minv has value then return Minv
          message("Getting cached data...") 
          return(Minv) 
      } 
      data <- x$get() 
-     Minv <- solve(data, ...) 
-     x$setinv(Minv) 
+     Minv <- solve(data, ...)   # Calculate inverse using solve()
+     x$setinv(Minv) 		# Keep the calculated MInv in cache for future use 
      return(Minv) 
  } 
